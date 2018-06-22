@@ -38,13 +38,9 @@ script.
 ```python
 >>> from weather import update_weather
 >>> update_weather()
-{'Temperature': (20, 20, 21), 'Wind': 3.1, 'Pressure': 1030, 'Humidity': 35, 'Description': 'clear sky', 'Sunrise': 'Fri Jun 22 05:43:27 2018', 'Sunset': 'Fri Jun 22 22:21:47 2018', 'City': 'London', 'Country': 'UK'}
+{'Temperature': (20, 19, 22), 'Wind': 3.1, 'Pressure': 1029, 'Humidity': 30, 'Description': 'clear sky', 'Sunrise': '05:43:30', 'Sunset': '22:21:48', 'City': 'London', 'Country': 'UK'}
 		
 ```
-
-## Built With
-
-* [Python](https://www.python.org/) - Python
 
 ## Contributing
 
