@@ -1,8 +1,8 @@
 # OpenWeatherMap Wrapper For Python
-Fetches data from the Open Weather Map API and uses Python for wrapping the data.
+Fetches data from the Open Weather Map API and uses Python for wrapping.
 
 
-As the OpenWeatherMap API needs a valid API key to allow responses, this script will not work without one.
+You will need a valid OpenWeatherMap API key to allow responses, this script will not work without one.
 
 You can signup for a free API key on the [Open Weather Map website](https://openweathermap.org/)
 
