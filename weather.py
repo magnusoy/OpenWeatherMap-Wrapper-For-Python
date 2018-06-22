@@ -24,11 +24,11 @@ class Weather(object):
         Create a new user at: https://openweathermap.org/
         and replace 'your API KEY', and write
         your own city and country"""
-        self.API_KEY = 'your API KEY'
+        self.API_KEY = '65a0be66ceac0d5699d1e2f5b9686781'
         self.city = 'London'
         self.country = 'UK'
         self.request = f'http://api.openweathermap.org/data/2.5/weather?q={self.city},{self.country}&appid=' \
-                       f'{self.API_KEY}&units=metric'
+            f'{self.API_KEY}&units=metric'
 
     def __repr__(self):
         """docstring"""
@@ -92,14 +92,14 @@ class Weather(object):
         system = self.collect_data()
         sunrise = system['sys']['sunrise']
         clock = ctime(sunrise)
-        return clock
+        return clock.split(' ')[-2]
 
     def get_sunset(self):
         """Fetches the sunset time"""
         system = self.collect_data()
         sunset = system['sys']['sunset']
         clock = ctime(sunset)
-        return clock
+        return clock.split(' ')[-2]
 
     def set_city(self, city):
         """Set new city"""
@@ -112,7 +112,7 @@ class Weather(object):
     def set_request(self, city, country="Norway"):
         """Set new request url"""
         self.request = f'http://api.openweathermap.org/data/2.5/weather?q={city},{country}&appid=' \
-                       f'{self.API_KEY}&units=metric'
+            f'{self.API_KEY}&units=metric'
 
 
 def update_weather():
