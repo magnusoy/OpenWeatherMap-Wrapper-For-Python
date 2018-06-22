@@ -13,9 +13,9 @@ from time import ctime
 
 
 class Weather(object):
-    """Fetches weather forcasts
+    """Fetches weather forecasts
 
-    Class which returns weather forcasts for a town/post code/zip
+    Class which returns weather forecasts for a town/post code/zip
     using the openweathermap API"""
 
     def __init__(self):
