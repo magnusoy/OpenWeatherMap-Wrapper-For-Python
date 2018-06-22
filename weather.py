@@ -24,12 +24,11 @@ class Weather(object):
         Create a new user at: https://openweathermap.org/
         and replace 'your API KEY', and write
         your own city and country"""
-        self.API_KEY = '65a0be66ceac0d5699d1e2f5b9686781'
+        self.API_KEY = 'your API KEY'
         self.city = 'London'
         self.country = 'UK'
-        self.request = f'http://api.openweathermap.org/data/2.5/weather?q={self.city},{self.country}&appid=' \
-            f'{self.API_KEY}&units=metric'
-
+        self.request = f'http://api.openweathermap.org/data/2.5/weather?q=%s,%s&appid=%s&units=metric'%(self.city, self.country, self.API_KEY)
+        
     def __repr__(self):
         """docstring"""
         return 'City: {}, Country: {}, API_KEY: {}'.format(self.city, self.country, self.API_KEY)
