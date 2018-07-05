@@ -24,7 +24,7 @@ class Weather(object):
         Create a new user at: https://openweathermap.org/
         and replace 'your API KEY', and write
         your own city and country"""
-        self.API_KEY = 'your API KEY'
+        self.API_KEY = 'YOUR API-KEY'
         self.city = 'London'
         self.country = 'UK'
         self.request = f'http://api.openweathermap.org/data/2.5/weather?q=%s,%s&appid=%s&units=metric'%(self.city, self.country, self.API_KEY)
@@ -117,7 +117,9 @@ class Weather(object):
 def update_weather():
     """Fetches all the weather data in a dictionary"""
     weather = Weather()
-    weather_data = {'Temperature': weather.get_temperature(),
+    weather_data = {'Current temp': weather.get_temperature()[0],
+                    'Max temp': weather.get_temperature()[1],
+                    'Min temp': weather.get_temperature()[2],
                     'Wind': weather.get_wind(),
                     'Pressure': weather.get_pressure(),
                     'Humidity': weather.get_humidity(),
@@ -126,7 +128,7 @@ def update_weather():
                     'Sunset': weather.get_sunset(),
                     'City': weather.city,
                     'Country': weather.country}
-    return weather_data
+    return json.dumps(weather_data, indent=4)
 
 
 if __name__ == '__main__':
