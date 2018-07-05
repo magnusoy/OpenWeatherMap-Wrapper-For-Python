@@ -8,20 +8,11 @@ You can signup for a free API key on the [Open Weather Map website](https://open
 
 
 ### Installing
+Only requires requests, wich you can simply download with pip. 
 
 ```bash
-pip install -r /path/to/requirements.txt
-
-or
-
 pip install requests==3.4
 ```
-
-
-Clone or download project as zip in any directory.
-Create a new python script within the directory, or copy
-weather.py to your own project and import it in your
-script.
 
 ### Examples
 
