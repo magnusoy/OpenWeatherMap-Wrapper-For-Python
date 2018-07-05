@@ -37,11 +37,53 @@ script.
 
 ```python
 >>> from weather import update_weather
->>> update_weather()
-{'Temperature': (20, 19, 22), 'Wind': 3.1, 'Pressure': 1029, 'Humidity': 30, 'Description': 'clear sky', 'Sunrise': '05:43:30', 'Sunset': '22:21:48', 'City': 'London', 'Country': 'UK'}
+>>> print(update_weather())
+{
+    "Current temp": 21,
+    "Max temp": 18,
+    "Min temp": 25,
+    "Wind": 2.6,
+    "Pressure": 1016,
+    "Humidity": 60,
+    "Description": "clear sky",
+    "Sunrise": "05:51:20",
+    "Sunset": "22:18:43",
+    "City": "London",
+    "Country": "UK"
+}
 		
-```
+```python
+>>> from forecast import WeatherForecast
+>>> forecast = WeatherForecast()
+>>> print(forecast.get_forecasts())
+{
+    "1": {
+        "Day": "Fri",
+        "Temp_max": 28.47,
+        "Temp_min": 12.38,
+        "Description": "clear sky"
+    },
+    "2": {
+        "Day": "Sat",
+        "Temp_max": 28.75,
+        "Temp_min": 18.32,
+        "Description": "clear sky"
+    },
+    "3": {
+        "Day": "Sun",
+        "Temp_max": 29.79,
+        "Temp_min": 16.83,
+        "Description": "clear sky"
+    },
+    "4": {
+        "Day": "Mon",
+        "Temp_max": 31.39,
+        "Temp_min": 18.79,
+        "Description": "clear sky"
+    }
+}
 
+```
 ## Contributing
 
 If you want to contribute or find anything wrong, please create a Pull request, or issue adressing the change, or issue.
