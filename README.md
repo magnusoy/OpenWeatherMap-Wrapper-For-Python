@@ -51,7 +51,8 @@ script.
     "City": "London",
     "Country": "UK"
 }
-		
+```
+
 ```python
 >>> from forecast import WeatherForecast
 >>> forecast = WeatherForecast()
@@ -82,7 +83,6 @@ script.
         "Description": "clear sky"
     }
 }
-
 ```
 ## Contributing
 
