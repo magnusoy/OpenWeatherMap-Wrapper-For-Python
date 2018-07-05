@@ -8,7 +8,7 @@ You can signup for a free API key on the [Open Weather Map website](https://open
 
 
 ### Installing
-Only requires requests, wich you can simply download with pip. 
+Only requires requests, which you can simply download with pip. 
 
 ```bash
 pip install requests==3.4
