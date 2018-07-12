@@ -118,8 +118,8 @@ def update_weather():
     """Fetches all the weather data in a dictionary"""
     weather = Weather()
     weather_data = {'Current temp': weather.get_temperature()[0],
-                    'Max temp': weather.get_temperature()[1],
-                    'Min temp': weather.get_temperature()[2],
+                    'Min temp': weather.get_temperature()[1],
+                    'Max temp': weather.get_temperature()[2],
                     'Wind': weather.get_wind(),
                     'Pressure': weather.get_pressure(),
                     'Humidity': weather.get_humidity(),
