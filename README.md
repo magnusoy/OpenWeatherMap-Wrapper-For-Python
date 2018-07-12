@@ -31,8 +31,8 @@ pip install requests==3.4
 >>> print(update_weather())
 {
     "Current temp": 21,
-    "Max temp": 18,
-    "Min temp": 25,
+    "Min temp": 18,
+    "Max temp": 25,
     "Wind": 2.6,
     "Pressure": 1016,
     "Humidity": 60,
