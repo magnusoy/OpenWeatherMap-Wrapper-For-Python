@@ -1,14 +1,32 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+
+
+
+"""
+
 # importing necessary libraries
 import urllib.request
 import json
 from time import ctime
+import configparser
 
 class WeatherForecast(object):
+    """Fetches weather forecasts
+
+    Class which returns weather forecasts for a town/post code/zip
+    using the openweathermap API"""
     def __init__(self):
-        self.API_KEY = 'YOUR API-KEY'
-        self.city = 'London'
-        self.country = 'UK'
-        self.request = f'http://api.openweathermap.org/data/2.5/forecast?q=%s,%s&appid=%s&units=metric'%(self.city, self.country, self.API_KEY)
+        """docstring"""
+        self.Config = configparser.ConfigParser()
+        self.Config.read("Config.ini")
+
+        self.API_KEY = self.ConfigSectionMap('forecast')['api-key']
+        self.city = self.ConfigSectionMap('forecast')['city']
+        self.country = self.ConfigSectionMap('forecast')['country']
+        self.units = self.ConfigSectionMap('forecast')['units']
+        self.request = f'http://api.openweathermap.org/data/2.5/forecast?q=%s,%s&appid=%s&units=%s'%(self.city, self.country, self.API_KEY, self.units)
     
     def __str__(self):
         """docstring"""
@@ -17,6 +35,20 @@ class WeatherForecast(object):
     def request_forecast(self):
         """Requests the weather API for weather forcasts"""
         return urllib.request.urlopen(self.request).read()
+
+    def ConfigSectionMap(self,section):
+        """Fetches the config parameters."""
+        dict1 = {}
+        options = self.Config.options(section)
+        for option in options:
+            try:
+                dict1[option] = self.Config.get(section, option)
+                if dict1[option] == -1:
+                    print("skip: %s" % option)
+            except:
+                print("exception on %s!" % option)
+                dict1[option] = None
+        return dict1
 
     def collect_data(self):
         """Converts bytes to dictionary"""
