@@ -10,12 +10,13 @@
 import urllib.request
 import json
 from time import ctime
+import configparser
 
 
 class Weather(object):
-    """Fetches weather forecasts
+    """Fetches current weather
 
-    Class which returns weather forecasts for a town/post code/zip
+    Class which returns current weather for a town/post code/zip
     using the openweathermap API"""
 
     def __init__(self):
@@ -23,11 +24,15 @@ class Weather(object):
 
         Create a new user at: https://openweathermap.org/
         and replace 'your API KEY', and write
-        your own city and country"""
-        self.API_KEY = 'YOUR API-KEY'
-        self.city = 'London'
-        self.country = 'UK'
-        self.request = f'http://api.openweathermap.org/data/2.5/weather?q=%s,%s&appid=%s&units=metric'%(self.city, self.country, self.API_KEY)
+        your own city and country in the Config.ini file."""
+        self.Config = configparser.ConfigParser()
+        self.Config.read("Config.ini")
+
+        self.API_KEY = self.ConfigSectionMap('weather')['api-key']
+        self.city = self.ConfigSectionMap('weather')['city']
+        self.country = self.ConfigSectionMap('weather')['country']
+        self.units = self.ConfigSectionMap('weather')['units']
+        self.request = f'http://api.openweathermap.org/data/2.5/weather?q=%s,%s&appid=%s&units=%s'%(self.city, self.country, self.API_KEY, self.units)
         
     def __repr__(self):
         """docstring"""
@@ -36,6 +41,20 @@ class Weather(object):
     def __str__(self):
         """docstring"""
         return 'Collecting weather information for {} in {}'.format(self.city, self.country)
+
+    def ConfigSectionMap(self,section):
+        """Fetches the config parameters."""
+        dict1 = {}
+        options = self.Config.options(section)
+        for option in options:
+            try:
+                dict1[option] = self.Config.get(section, option)
+                if dict1[option] == -1:
+                    print("skip: %s" % option)
+            except:
+                print("exception on %s!" % option)
+                dict1[option] = None
+        return dict1
 
     def request_weather(self):
         """Requests the weather API for weather forcasts"""
@@ -118,8 +137,8 @@ def update_weather():
     """Fetches all the weather data in a dictionary"""
     weather = Weather()
     weather_data = {'Current temp': weather.get_temperature()[0],
-                    'Min temp': weather.get_temperature()[1],
-                    'Max temp': weather.get_temperature()[2],
+                    'Max temp': weather.get_temperature()[1],
+                    'Min temp': weather.get_temperature()[2],
                     'Wind': weather.get_wind(),
                     'Pressure': weather.get_pressure(),
                     'Humidity': weather.get_humidity(),
