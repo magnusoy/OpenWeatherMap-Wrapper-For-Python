@@ -6,6 +6,8 @@ You will need a valid OpenWeatherMap API key to allow responses, this script wil
 
 You can signup for a free API key on the [Open Weather Map website](https://openweathermap.org/)
 
+Change settings in the Config file to your own API-KEY, location and units.
+
 
 ### Installing
 Only requires requests, which you can simply download with pip. 
