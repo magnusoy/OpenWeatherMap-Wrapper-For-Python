@@ -28,10 +28,10 @@ class Weather(object):
         self.Config = configparser.ConfigParser()
         self.Config.read("Config.ini")
 
-        self.API_KEY = self.ConfigSectionMap('weather')['api-key']
-        self.city = self.ConfigSectionMap('weather')['city']
-        self.country = self.ConfigSectionMap('weather')['country']
-        self.units = self.ConfigSectionMap('weather')['units']
+        self.API_KEY = self.Config['weather']['api-key']
+        self.city = self.Config['weather']['city']
+        self.country = self.Config['weather']['country']
+        self.units = self.Config['weather']['units']
         self.request = f'http://api.openweathermap.org/data/2.5/weather?q=%s,%s&appid=%s&units=%s'%(self.city, self.country, self.API_KEY, self.units)
         
     def __repr__(self):
@@ -41,20 +41,6 @@ class Weather(object):
     def __str__(self):
         """docstring"""
         return 'Collecting weather information for {} in {}'.format(self.city, self.country)
-
-    def ConfigSectionMap(self,section):
-        """Fetches the config parameters."""
-        dict1 = {}
-        options = self.Config.options(section)
-        for option in options:
-            try:
-                dict1[option] = self.Config.get(section, option)
-                if dict1[option] == -1:
-                    print("skip: %s" % option)
-            except:
-                print("exception on %s!" % option)
-                dict1[option] = None
-        return dict1
 
     def request_weather(self):
         """Requests the weather API for weather forcasts"""
